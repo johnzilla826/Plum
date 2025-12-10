@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Plum.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Initialize DB
+builder.Services.AddDbContext<PlumDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 
