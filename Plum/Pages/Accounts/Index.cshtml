@@ -4,3 +4,24 @@
 @{
     ViewData["Title"] = "Accounts";
 }
+
+<h4>Accounts</h4>
+<hr/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var account in Model.Accounts)
+    {
+        <tr>
+            <td>@account.Id</td>
+            <td><a asp-page="./Edit" asp-route-id="@account.Id">@account.Name</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

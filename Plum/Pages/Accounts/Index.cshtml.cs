@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Plum.Data;
+using Plum.Models;
 
 namespace Plum.Pages.Accounts;
 
-public class Index : PageModel
+public class Index(PlumDbContext context) : PageModel
 {
-    public void OnGet()
+    public IList<Account> Accounts { get; set; }
+
+    public async Task OnGetAsync()
     {
-        
+        Accounts = await context.Accounts.ToListAsync();
     }
 }
